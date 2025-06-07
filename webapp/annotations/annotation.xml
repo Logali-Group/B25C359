@@ -1,0 +1,307 @@
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Communication.xml">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/v2/northwind/northwind.svc/$metadata">
+        <edmx:Include Namespace="NorthwindModel"/>
+        <edmx:Include Namespace="ODataWeb.Northwind.Model"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="local">
+
+            <Annotations Target="NorthwindModel.Product/ProductID">
+                <Annotation Term="Common.Label" String="Product ID"/>
+            </Annotations>
+
+            <Annotations Target="NorthwindModel.Product/ProductName">
+                <Annotation Term="Common.Label" String="Product Name"/>
+            </Annotations>
+
+            <Annotations Target="NorthwindModel.Product/CategoryID">
+                <Annotation Term="Common.Label" String="Category ID"/>
+            </Annotations>
+
+            <Annotations Target="NorthwindModel.Product/SupplierID">
+                <Annotation Term="Common.Label" String="Supplier ID"/>
+            </Annotations>
+
+            <Annotations Target="NorthwindModel.Product/UnitPrice">
+                <Annotation Term="Common.Label" String="Unit Price"/>
+            </Annotations>
+
+            <Annotations Target="NorthwindModel.Product/UnitsInStock">
+                <Annotation Term="Common.Label" String="Units in Stock"/>
+            </Annotations>
+
+            <Annotations Target="NorthwindModel.Product/UnitsOnOrder">
+                <Annotation Term="Common.Label" String="Units on Order"/>
+            </Annotations>
+
+            <Annotations Target="NorthwindModel.Product">
+
+                <Annotation Term="UI.HeaderFacets" >
+                    <Collection>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Target" AnnotationPath="@UI.Chart#ChartCalculation"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+
+
+                <Annotation Term="UI.HeaderInfo" >
+                    <Record Type="UI.HeaderInfoType">
+                        <PropertyValue Property="TypeName" String="{@i18n>product}"/>
+                        <PropertyValue Property="TypeNamePlural" String="{@i18n>appTitle}"/>
+                        <PropertyValue Property="Title">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" Path="ProductName"/>
+                            </Record>
+                        </PropertyValue>
+                        <PropertyValue Property="Description">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" Path="ProductID"/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="ProductID"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="ProductName"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="CategoryID"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="SupplierID"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="UnitPrice"/>
+                        </Record>
+                        <!-- <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="UnitsInStock"/>
+                        </Record> -->
+                        <Record Type="UI.DataFieldForAnnotation">
+                            <PropertyValue Property="Target" AnnotationPath="@UI.Chart#ChartCalculation"/>
+                            <PropertyValue Property="Label" String="Units in Stock"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="UnitsOnOrder"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+
+                <Annotation Term="UI.FieldGroup" Qualifier="ProductInformation">
+                    <Record Type="UI.FieldGroupType">
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="ProductID"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="ProductName"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+
+                <Annotation Term="UI.Facets" >
+                    <Collection>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#ProductInformation"/>
+                            <PropertyValue Property="Label" String="General Information"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+
+                <Annotation Term="UI.DataPoint" Qualifier="CriticalityCalculation">
+                    <Record Type="UI.DataPointType">
+                        <PropertyValue Property="Value" Path="UnitsInStock"/>
+                        <PropertyValue Property="MinimumValue" Decimal="0"/>
+                        <PropertyValue Property="MaximumValue" Decimal="150"/>
+                        <PropertyValue Property="CriticalityCalculation">
+                            <Record Type="UI.CriticalityCalculationType">
+                                <PropertyValue Property="ImprovementDirection" EnumMember="UI.ImprovementDirectionType/Maximize"/>
+                                <PropertyValue Property="ToleranceRangeLowValue" Decimal="20"/>
+                                <PropertyValue Property="DeviationRangeLowValue" Decimal="1"/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+
+                <Annotation Term="UI.Chart" Qualifier="ChartCalculation">
+                    <Record Type="UI.ChartDefinitionType">
+                        <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Bullet"/>
+                        <PropertyValue Property="Measures">
+                            <Collection>
+                                <PropertyPath>UnitsInStock</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="MeasureAttributes">
+                            <Collection>
+                                <Record Type="UI.ChartMeasureAttributeType">
+                                    <PropertyValue Property="DataPoint" AnnotationPath="@UI.DataPoint#CriticalityCalculation"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+
+                <Annotation Term="UI.SelectionPresentationVariant" Qualifier="All">
+                    <Record Type="UI.SelectionPresentationVariantType">
+                        <PropertyValue Property="Text" String="{@i18n>all}"/>
+                        <PropertyValue Property="SelectionVariant">
+                            <Record Type="UI.SelectionVariantType">
+                                <PropertyValue Property="SelectOptions">
+                                    <Collection>
+                                        <Record Type="UI.SelectOptionType">
+                                            <PropertyValue Property="Ranges">
+                                                <Collection>
+                                                    <Record Type="UI.SelectionRangeType">
+                                                        <PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
+                                                        <PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/EQ"/>
+                                                        <PropertyValue Property="Low">
+                                                            <Null/>
+                                                        </PropertyValue>
+                                                    </Record>
+                                                </Collection>
+                                            </PropertyValue>
+                                        </Record>
+                                    </Collection>
+                                </PropertyValue>
+                            </Record>
+                        </PropertyValue>
+                        <PropertyValue Property="PresentationVariant">
+                            <Record Type="UI.PresentationVariantType">
+                                <PropertyValue Property="Visualizations">
+                                    <Collection>
+                                        <AnnotationPath>@UI.LineItem</AnnotationPath>
+                                    </Collection>
+                                </PropertyValue>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+
+                <Annotation Term="UI.SelectionPresentationVariant" Qualifier="Available">
+                    <Record Type="UI.SelectionPresentationVariantType">
+                        <PropertyValue Property="Text" String="Available"/>
+                        <PropertyValue Property="SelectionVariant">
+                            <Record Type="UI.SelectionVariantType">
+                                <PropertyValue Property="SelectOptions">
+                                    <Collection>
+                                        <Record Type="UI.SelectOptionType">
+                                            <PropertyValue Property="PropertyName" PropertyPath="UnitsInStock"/>
+                                            <PropertyValue Property="Ranges">
+                                                <Collection>
+                                                    <Record Type="UI.SelectionRangeType">
+                                                        <PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
+                                                        <PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/BT"/>
+                                                        <PropertyValue Property="Low" Int="20"/>
+                                                        <PropertyValue Property="High" Int="150"/>
+                                                    </Record>
+                                                </Collection>
+                                            </PropertyValue>
+                                        </Record>
+                                    </Collection>
+                                </PropertyValue>
+                            </Record>
+                        </PropertyValue>
+                        <PropertyValue Property="PresentationVariant">
+                            <Record Type="UI.PresentationVariantType">
+                                <PropertyValue Property="Visualizations">
+                                    <Collection>
+                                        <AnnotationPath>@UI.LineItem</AnnotationPath>
+                                    </Collection>
+                                </PropertyValue>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+
+                <Annotation Term="UI.SelectionPresentationVariant" Qualifier="LowAvailability">
+                    <Record Type="UI.SelectionPresentationVariantType">
+                        <PropertyValue Property="Text" String="{@i18n>lowAvailability}"/>
+                        <PropertyValue Property="SelectionVariant">
+                            <Record Type="UI.SelectionVariantType">
+                                <PropertyValue Property="SelectOptions">
+                                    <Collection>
+                                        <Record Type="UI.SelectOptionType">
+                                            <PropertyValue Property="PropertyName" PropertyPath="UnitsInStock"/>
+                                            <PropertyValue Property="Ranges">
+                                                <Collection>
+                                                    <Record Type="UI.SelectionRangeType">
+                                                        <PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
+                                                        <PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/BT"/>
+                                                        <PropertyValue Property="Low" Int="1"/>
+                                                        <PropertyValue Property="High" Int="19"/>
+                                                    </Record>
+                                                </Collection>
+                                            </PropertyValue>
+                                        </Record>
+                                    </Collection>
+                                </PropertyValue>
+                            </Record>
+                        </PropertyValue>
+                        <PropertyValue Property="PresentationVariant">
+                            <Record Type="UI.PresentationVariantType">
+                                <PropertyValue Property="Visualizations">
+                                    <Collection>
+                                        <AnnotationPath>@UI.LineItem</AnnotationPath>
+                                    </Collection>
+                                </PropertyValue>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+
+                <Annotation Term="UI.SelectionPresentationVariant" Qualifier="NotAvailable">
+                    <Record Type="UI.SelectionPresentationVariantType">
+                        <PropertyValue Property="Text" String="{@i18n>notAvailable}"/>
+                        <PropertyValue Property="SelectionVariant">
+                            <Record Type="UI.SelectionVariantType">
+                                <PropertyValue Property="SelectOptions">
+                                    <Collection>
+                                        <Record Type="UI.SelectOptionType">
+                                            <PropertyValue Property="PropertyName" PropertyPath="UnitsInStock"/>
+                                            <PropertyValue Property="Ranges">
+                                                <Collection>
+                                                    <Record Type="UI.SelectionRangeType">
+                                                        <PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
+                                                        <PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/EQ"/>
+                                                        <PropertyValue Property="Low" Int="0"/>
+                                                    </Record>
+                                                </Collection>
+                                            </PropertyValue>
+                                        </Record>
+                                    </Collection>
+                                </PropertyValue>
+                            </Record>
+                        </PropertyValue>
+                        <PropertyValue Property="PresentationVariant">
+                            <Record Type="UI.PresentationVariantType">
+                                <PropertyValue Property="Visualizations">
+                                    <Collection>
+                                        <AnnotationPath>@UI.LineItem</AnnotationPath>
+                                    </Collection>
+                                </PropertyValue>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
