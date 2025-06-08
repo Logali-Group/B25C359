@@ -1,0 +1,190 @@
+{
+  "_version": "1.22.0",
+  "sap.app": {
+    "id": "ovp",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:ovp",
+      "version": "1.18.0",
+      "toolsId": "fa7db6f2-3565-4b0f-8711-b88e1e15885f"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/sap/opu/odata/sap/SEPMRA_SO_ANA/",
+        "type": "OData",
+        "settings": {
+          "annotations": [
+            "annotation"
+          ],
+          "localUri": "localService/mainService/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      },
+      "SEPMRA_SO_ANA_ANNO_MDL": {
+        "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='SEPMRA_SO_ANA_ANNO_MDL',Version='0001')/$value/",
+        "type": "ODataAnnotation",
+        "settings": {
+          "localUri": "localService/mainService/SEPMRA_SO_ANA_ANNO_MDL.xml"
+        }
+      },
+      "annotation": {
+        "type": "ODataAnnotation",
+        "uri": "annotations/annotation.xml",
+        "settings": {
+          "localUri": "annotations/annotation.xml"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.78.9",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.ushell": {},
+        "sap.f": {},
+        "sap.ui.comp": {},
+        "sap.ui.generic.app": {},
+        "sap.suite.ui.generic.template": {},
+        "sap.ovp": {},
+        "sap.ui.rta": {},
+        "sap.ui.layout": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "ovp.i18n.i18n"
+        }
+      },
+      "sepmra_so_ana": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "defaultBindingMode": "TwoWay",
+          "defaultCountMode": "Inline",
+          "refreshAfterChange": false,
+          "useBatch":false
+        }
+      },
+      "@i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      }
+    },
+    "resources": {
+      "css": []
+    },
+    "routing": {
+      "config": {},
+      "routes": [],
+      "targets": {}
+    }
+  },
+  "sap.ovp": {
+    "globalFilterModel": "sepmra_so_ana",
+    "globalFilterEntitySet": "SEPMRA_C_ALP_Product",
+    "containerLayout": "resizable",
+    "enableLiveFilter": true,
+    "considerAnalyticalParameters": false,
+    "cards": {
+      "products_so": {
+        "model":"sepmra_so_ana",
+        "template": "sap.ovp.cards.table",
+        "settings": {
+          "title":"{{cardTableT}}",
+          "subTitle": "{{cardTableST}}",
+          "listFlavor": "bar",
+          "listType": "extended",
+          "entitySet": "SEPMRA_C_ALP_Product",
+          "annotationPath": "com.sap.vocabularies.UI.v1.LineItem#LineItemProduct",
+          "dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#DataPointProduct",
+          "selectionAnnotationPath":"com.sap.vocabularies.UI.v1.SelectionVariant#SelectionVariantProduct"
+        }
+      },
+      "salesorder_so": {
+        "model":"sepmra_so_ana",
+        "template": "sap.ovp.cards.list",
+        "settings": {
+          "title": "Sales Order",
+          "subTitle": "Sales Order",
+          "entitySet": "SEPMRA_C_ALP_SalesOrder",
+          "annotationPath": "com.sap.vocabularies.UI.v1.LineItem#LineItemSalesOrder"
+        }
+      },
+      "customers_so": {
+        "model": "sepmra_so_ana",
+        "template": "sap.ovp.cards.linklist",
+        "settings": {
+          "title": "Customers",
+          "subTitle": "Customers",
+          "entitySet": "SEPMRA_C_ALP_Customer",
+          "sortBy": "Customer",
+          "sortOrder": "ascending",
+          "listFlavor": "standard",
+          "headerAnnotationPath":"com.sap.vocabularies.UI.v1.HeaderInfo#HeaderInfoCustomers",
+          "defaultSpan": {
+            "rows": 20,
+            "cols": 2
+          }
+        }
+      },
+      "chart_line": {
+        "model": "sepmra_so_ana",
+        "template": "sap.ovp.cards.charts.analytical",
+        "settings": {
+          "title": "Chart - Line",
+          "entitySet":"SEPMRA_C_ALP_SlsOrdItemCube",
+          "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#SalesOrderCube"
+        }
+      },
+      "stack_user": {
+        "model": "sepmra_so_ana",
+        "template":"sap.ovp.cards.stack",
+        "settings": {
+          "title": "Users",
+          "subTitle": "Users",
+          "entitySet": "SEPMRA_C_ALP_User",
+          "identificationAnnotationPath": "con.sap.vocabularies.UI.v1.Identification#IdentificationUser",
+          "objectStreamCardsSettings": {
+            "annotationPath":"com.sap.vocabularies.UI.v1.Facets#FacetUser"
+          }
+        }
+      }
+    }
+  },
+  "sap.fiori": {
+    "registrationIds": [],
+    "archeType": "analytical"
+  }
+}

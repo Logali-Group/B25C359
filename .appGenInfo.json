@@ -1,0 +1,29 @@
+{
+  "generationParameters": {
+    "generationDate": "Sat Jun 07 2025 14:30:52 GMT+0000 (Coordinated Universal Time)",
+    "generatorPlatform": "SAP Business Application Studio",
+    "serviceType": "SAP System (ABAP On Premise)",
+    "metadataFilename": "",
+    "serviceUrl": "http://s4h22.sap4practice.com:8007/sap/opu/odata/sap/SEPMRA_SO_ANA",
+    "appName": "ovp",
+    "appTitle": "Overview Page",
+    "appDescription": "Overview Page",
+    "appNamespace": "",
+    "ui5Theme": "sap_fiori_3",
+    "ui5Version": "1.78.9",
+    "enableCodeAssist": false,
+    "enableEslint": false,
+    "enableTypeScript": false,
+    "showMockDataInfo": true,
+    "generatorVersion": "1.18.0",
+    "template": "Overview Page V2",
+    "generatorName": "SAP Fiori Application Generator",
+    "entityRelatedConfig": [
+      {
+        "type": "Filter Entity Type",
+        "value": "SEPMRA_C_ALP_Product"
+      }
+    ],
+    "launchText": "In order to launch the generated app, simply run the following from the generated app root folder:\n\n```\n    npm start\n```"
+  }
+}
