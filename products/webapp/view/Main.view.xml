@@ -1,0 +1,94 @@
+<mvc:View 
+            controllerName="products.controller.Main"
+            xmlns="sap.m"
+            xmlns:f="sap.f"
+            xmlns:mvc="sap.ui.core.mvc">
+
+    <f:DynamicPage>
+
+        <f:title>
+            <f:DynamicPageTitle>
+
+                <f:heading>
+
+                    <Title text="{i18n>appTitle}" 
+                                wrapping="true"/>
+                
+                </f:heading>
+            
+            </f:DynamicPageTitle>
+        </f:title>
+
+
+        <f:content>
+
+            <Table
+                    items="{products>/ProductsSet}">
+
+                <columns>
+
+                    <Column>
+                        <Label text="{i18n>product}"/>
+                    </Column>
+                
+
+                    <Column>
+                        <Label text="{i18n>productName}"/>
+                    </Column>
+                
+
+                    <Column>
+                        <Label text="{i18n>supplier}"/>
+                    </Column>
+                
+
+                    <Column>
+                        <Label text="{i18n>category}"/>
+                    </Column>
+                
+
+                    <Column>
+                        <Label text="{i18n>rating}"/>
+                    </Column>
+
+                    <Column>
+                        <Label text="{i18n>stock}"/>
+                    </Column>
+
+                    <Column>
+                        <Label text="{i18n>price}"/>
+                    </Column>
+                
+                </columns>
+
+                <items>
+
+                    <ColumnListItem>
+
+                        <cells>
+                            <Text text="{products>product}"/>
+                            <Text text="{products>productName}"/>
+                            <Text text="{products>supplier_ID}"/>
+                            <Text text="{products>category_ID}"/>
+                            <Text text="{products>rating}"/>
+                            <Text text="{products>stock_code}"/>
+                            <ObjectNumber number="{
+                                parts: [
+                                    'products>price',
+                                    'products>currency'
+                                ],
+                                type: 'sap.ui.model.type.Currency'
+                            }"/>
+                        </cells>
+                    
+                    </ColumnListItem>
+                
+                </items>
+
+            </Table>
+        
+        </f:content>
+
+    </f:DynamicPage>
+
+</mvc:View>

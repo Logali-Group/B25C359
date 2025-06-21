@@ -1,0 +1,24 @@
+{
+  "generationParameters": {
+    "generationDate": "Sat Jun 21 2025 14:12:41 GMT+0000 (Coordinated Universal Time)",
+    "generatorPlatform": "SAP Business Application Studio",
+    "serviceType": "OData Url",
+    "metadataFilename": "",
+    "serviceUrl": "http://159.65.96.144:7001/odata/v4/logali-group/",
+    "appName": "products",
+    "appTitle": "Products",
+    "appDescription": "Products",
+    "appNamespace": "",
+    "ui5Theme": "sap_horizon",
+    "ui5Version": "1.136.2",
+    "enableCodeAssist": true,
+    "enableEslint": true,
+    "enableTypeScript": true,
+    "showMockDataInfo": true,
+    "generatorVersion": "1.18.0",
+    "template": "Basic V4",
+    "generatorName": "SAP Fiori Application Generator",
+    "entityRelatedConfig": [],
+    "launchText": "In order to launch the generated app, simply run the following from the generated app root folder:\n\n```\n    npm start\n```"
+  }
+}
