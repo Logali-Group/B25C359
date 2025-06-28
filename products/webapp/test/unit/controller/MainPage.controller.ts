@@ -1,5 +1,5 @@
 /*global QUnit*/
-import Controller from "products/controller/Main.controller";
+import Controller from "products/controller/Master.controller";
 
 QUnit.module("Main Controller");
 

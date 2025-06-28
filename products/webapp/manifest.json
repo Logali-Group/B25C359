@@ -93,17 +93,22 @@
       },
       "routes": [
         {
-          "name": "RouteMain",
+          "name": "RouteMaster",
           "pattern": ":?query:",
           "target": [
-            "TargetMain"
+            "TargetMaster"
           ]
         }
       ],
       "targets": {
-        "TargetMain": {
-          "id": "Main",
-          "name": "Main"
+        "Container": {
+          "name": "Container"
+        },
+        "TargetMaster": {
+          "parent": "Container",
+          "id": "Master",
+          "controlAggregation": "beginColumnPages",
+          "name": "Master"
         }
       }
     },

@@ -1,0 +1,239 @@
+<mvc:View 
+            controllerName="products.controller.Master"
+            xmlns="sap.m"
+            xmlns:f="sap.f"
+            xmlns:core="sap.ui.core"
+            xmlns:mvc="sap.ui.core.mvc"
+            xmlns:filterbar="sap.ui.comp.filterbar">
+
+    <f:DynamicPage>
+
+        <f:title>
+            <f:DynamicPageTitle>
+
+                <f:heading>
+
+                    <Title text="{i18n>appTitle}" 
+                                wrapping="true"/>
+                
+                </f:heading>
+            
+            </f:DynamicPageTitle>
+        </f:title>
+
+        <f:header>
+
+            <f:DynamicPageHeader>
+
+                <filterbar:FilterBar id="filterbar"
+                                    search="onSearchPress"
+                                    showClearOnFB="true"
+                                    clear="onClearPress">
+
+                    <filterbar:filterGroupItems>
+                    
+                        <filterbar:FilterGroupItem
+                                                    groupName="filters"
+                                                    name="product"
+                                                    label="{i18n>product}"
+                                                    visibleInFilterBar="true">
+
+                            <filterbar:control>
+
+                                <Input/>
+                            
+                            </filterbar:control>
+                        
+                        </filterbar:FilterGroupItem>
+
+                        <filterbar:FilterGroupItem groupName="filters"
+                                                    name="supplier"
+                                                    label="{i18n>supplier}"
+                                                    visibleInFilterBar="true">
+                                                    
+                            <filterbar:control>
+
+                                    <ComboBox
+                                                items="{products>/SuppliersSet}"
+                                                showSecondaryValues="true">
+
+                                        <core:ListItem 
+                                                        key="{products>ID}" 
+                                                        text="{products>supplierName}" 
+                                                        additionalText="{products>supplier}"/>
+                                    
+                                    </ComboBox>
+                            
+                            </filterbar:control> 
+
+                        </filterbar:FilterGroupItem>
+
+
+                        <filterbar:FilterGroupItem groupName="filters"
+                                                    name="category"
+                                                    label="{i18n>category}"
+                                                    visibleInFilterBar="true">
+
+                                <filterbar:control>
+                                
+                                    <ComboBox items="{products>/VH_CategoriesSet}">
+                                        <items>
+                                            <core:Item key="{products>ID}"
+                                                        text="{products>category}"/>
+                                        </items>
+                                    </ComboBox>
+                                
+                                </filterbar:control>                        
+
+                        </filterbar:FilterGroupItem>
+
+                        <filterbar:FilterGroupItem groupName="filters"
+                                                    name="stock"
+                                                    label="{i18n>stock}"
+                                                    visibleInFilterBar="true">
+
+                                <filterbar:control>
+                                
+                                    <ComboBox items="{products>/VH_Stock}">
+                                        <items>
+                                            <core:Item key="{products>code}"
+                                                        text="{products>name}"/>
+                                        </items>
+                                    </ComboBox>
+                                
+                                </filterbar:control>                        
+
+                        </filterbar:FilterGroupItem>
+                    
+                        <filterbar:FilterGroupItem groupName="filters"
+                                                    name="rating"
+                                                    label="{i18n>rating}"
+                                                    visibleInFilterBar="true">
+
+                                <filterbar:control>
+                                    <RatingIndicator />
+                                </filterbar:control>                        
+
+                        </filterbar:FilterGroupItem>
+
+                        <filterbar:FilterGroupItem groupName="filters"
+                                                    name="price"
+                                                    label="{i18n>price}"
+                                                    visibleInFilterBar="true">
+
+                                <filterbar:control>
+                                    <RangeSlider showAdvancedTooltip="true"/>
+                                </filterbar:control>                        
+
+                        </filterbar:FilterGroupItem>
+                    
+                    </filterbar:filterGroupItems>
+                
+                </filterbar:FilterBar>
+            
+            </f:DynamicPageHeader>
+        
+        </f:header>
+
+
+        <f:content>
+
+            <Table  id="table"
+                    items="{products>/ProductsSet}">
+
+                <headerToolbar>
+                    <Toolbar>
+                        <Title 
+                                core:require="{
+                                    Formatter: 'products/model/formatter'
+                                }"
+                                text="{
+                                    path : 'view>/title',
+                                    formatter: 'Formatter.titleFormatter.bind($controller)'
+                                }"
+                                wrapping="true"/>
+                    </Toolbar>
+                </headerToolbar>
+
+                <columns>
+
+                    <Column     demandPopin="true"
+                                minScreenWidth="Small">
+                        <Label text="{i18n>product}"/>
+                    </Column>
+                
+
+                    <!-- <Column>
+                        <Label text="{i18n>productName}"/>
+                    </Column> -->
+                
+
+                    <Column demandPopin="true"
+                            minScreenWidth="Small">
+                        <Label text="{i18n>supplier}"/>
+                    </Column>
+                
+
+                    <Column
+                            demandPopin="false"
+                            minScreenWidth="Small">
+                        <Label text="{i18n>category}"/>
+                    </Column>
+                
+
+                    <Column
+                        demandPopin="true"
+                        minScreenWidth="Small">
+                        <Label text="{i18n>rating}"/>
+                    </Column>
+
+                    <Column
+                        demandPopin="false"
+                        minScreenWidth="Small">
+                        <Label text="{i18n>stock}"/>
+                    </Column>
+
+                    <Column
+                            demandPopin="true"
+                            minScreenWidth="Small">
+                        <Label text="{i18n>price}"/>
+                    </Column>
+                
+                </columns>
+
+                <items>
+
+                    <ColumnListItem>
+
+                        <cells>
+                            <ObjectIdentifier title="{products>product}"
+                                                text="{products>productName}"/>
+                            <!-- <Text text="{products>productName}"/> -->
+                            <Text text="{products>supplier/supplierName}"/>
+                            <Text text="{products>category/category}"/>
+                            <RatingIndicator value="{products>rating}"
+                                            enabled="false"/>
+                            <ObjectStatus text="{products>stock/name}"
+                                            state="{=   ${products>stock_code} === 'Available'? 'Success' :
+                                                        ${products>stock_code} === 'LowAvailability'? 'Warning' :
+                                                        ${products>stock_code} === 'NotAvailable'? 'Error' : 'None' }"/>
+                            <ObjectNumber number="{
+                                parts: [
+                                    'products>price',
+                                    'products>currency'
+                                ],
+                                type: 'sap.ui.model.type.Currency'
+                            }"/>
+                        </cells>
+                    
+                    </ColumnListItem>
+                
+                </items>
+
+            </Table>
+        
+        </f:content>
+
+    </f:DynamicPage>
+
+</mvc:View>
