@@ -9,6 +9,10 @@ import FilterOperator from "sap/ui/model/FilterOperator";
 import Table from "sap/m/Table";
 import ListBinding from "sap/ui/model/ListBinding";
 import RangeSlider from "sap/m/RangeSlider";
+import Event from "sap/ui/base/Event";
+import ColumnListItem from "sap/m/ColumnListItem";
+import Context from "sap/ui/model/odata/v4/Context";
+import JSONModel from "sap/ui/model/json/JSONModel";
 
 /**
  * @namespace products.controller
@@ -97,5 +101,20 @@ export default class Master extends BaseController {
         price.setValue2(100);
 
         this.applyFilters([]);
+    }
+
+    public onNavToDetails (event : Event) : void {
+
+        const item = (event.getSource() as ColumnListItem);
+        const bindingContext = item.getBindingContext("products") as Context;
+        const id = bindingContext.getProperty("ID");
+
+        const viewModel = this.getModel("view") as JSONModel;
+        viewModel.setProperty("/layout","TwoColumnsMidExpanded");
+
+        const router = this.getRouter();
+        router.navTo("RouteDetails", {
+            id: id
+        });
     }
 }

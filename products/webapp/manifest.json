@@ -95,8 +95,14 @@
         {
           "name": "RouteMaster",
           "pattern": ":?query:",
-          "target": [
-            "TargetMaster"
+          "target": "TargetMaster"
+        },
+        {
+          "name":"RouteDetails",
+          "pattern": "Product({id}):?query:",
+          "target":[
+            "TargetMaster",
+            "TargetDetails"
           ]
         }
       ],
@@ -106,9 +112,15 @@
         },
         "TargetMaster": {
           "parent": "Container",
-          "id": "Master",
           "controlAggregation": "beginColumnPages",
+          "controlId": "container",
           "name": "Master"
+        },
+        "TargetDetails": {
+          "parent": "Container",
+          "controlAggregation": "midColumnPages",
+          "controlId": "container",
+          "name": "Details"
         }
       }
     },

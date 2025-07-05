@@ -1,0 +1,48 @@
+<core:FragmentDefinition
+                xmlns="sap.m"
+                xmlns:core="sap.ui.core"
+                xmlns:form="sap.ui.layout.form">
+
+        <VBox   
+                class="sapUiSmallMargin">
+
+                <form:SimpleForm
+                                        id="simpleFormDisplay"
+                                        editable="false">
+
+                        <form:content>
+                        
+                                <Label text="{i18n>product}"/>
+                                <Text text="{products>product}"/>
+                        
+                                <Label text="{i18n>productName}"/>
+                                <Text text="{products>productName}"/>
+                        
+                                <Label text="{i18n>description}"/>
+                                <Text text="{products>description}"/>
+                        
+                                <Label text="{i18n>supplier}"/>
+                                <Text text="{products>supplier/supplier}"/>
+                        
+                                <Label text="{i18n>category}"/>
+                                <Text text="{products>category/category}"/>
+                        
+                                <Label text="{i18n>subcategory}"/>
+                                <Text text="{products>subCategory/subCategory}"/>
+                        
+                                <Label text="{i18n>stock}"/>
+                                <Text text="{products>stock/name}"/>
+                        
+                                <Label text="{i18n>rating}"/>
+                                <Text text="{products>rating}"/>
+                        
+                                <Label text="{i18n>price}"/>
+                                <Text text="{products>price}"/>
+                        
+                        </form:content>
+
+                </form:SimpleForm>
+        </VBox>
+
+
+</core:FragmentDefinition>

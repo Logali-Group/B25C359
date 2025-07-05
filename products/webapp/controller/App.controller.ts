@@ -14,7 +14,13 @@ export default class App extends BaseController {
     private viewModel () : void {
         let data = {
             title: "",
-            layout: "TwoColumnsMidExpanded"
+            layout: "OneColumn",
+            previosLayout: "",
+            actionButtonsInfo: {
+                midColumn: {
+                    fullScreen: false
+                }
+            }
         }
         let model = new JSONModel(data);
         this.setModel(model, "view");

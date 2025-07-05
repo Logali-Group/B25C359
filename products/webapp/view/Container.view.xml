@@ -16,7 +16,10 @@
 
 
             <f:midColumnPages>
-            
+
+                <mvc:XMLView id="details"
+                                viewName="products.view.Details"
+                                type="XML"/>
             
             </f:midColumnPages>
 

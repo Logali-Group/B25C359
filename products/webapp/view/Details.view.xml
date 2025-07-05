@@ -1,0 +1,117 @@
+<mvc:View
+                controllerName="products.controller.Details"
+                xmlns="sap.m"
+                xmlns:uxap="sap.uxap"
+                xmlns:mvc="sap.ui.core.mvc">
+
+    <uxap:ObjectPageLayout>
+
+
+        <uxap:headerTitle>
+
+            <uxap:ObjectPageDynamicHeaderTitle>
+            
+                <uxap:expandedHeading>
+                    <FlexBox>
+                        <Title text="{products>productName}"/>
+                    </FlexBox>
+                </uxap:expandedHeading>
+
+                <uxap:snappedHeading>
+                    <FlexBox>
+                        <Title text="{products>productName}"/>
+                    </FlexBox>
+                </uxap:snappedHeading>
+
+                <uxap:expandedContent>
+                    <Text text="{products>product}"/>
+                </uxap:expandedContent>
+
+                <uxap:snappedContent>
+                    <Text text="{products>product}"/>
+                </uxap:snappedContent>
+
+                <uxap:actions>
+
+                    <Button
+                            id="edit"
+                            text="{i18n>edit}"
+                            tooltip="{i18n>edit}"
+                            type="Emphasized"
+                            width="4rem"
+                            press="handleEditPress"/>
+
+                    <Button
+                            id="delete"
+                            text="{i18n>delete}"
+                            tooltip="{i18n>delete}"
+                            type="Reject"
+                            width="4rem"
+                            press="handleDeletePress"/>
+
+                    <Button
+                            id="save"
+                            text="{i18n>save}"
+                            tooltip="{i18n>save}"
+                            type="Accept"
+                            visible="false"
+                            width="4rem"
+                            press="handleSavePress"/>
+
+                    <Button
+                            id="cancel"
+                            text="{i18n>cancel}"
+                            tooltip="{i18n>cancel}"
+                            type="Attention"
+                            visible="false"
+                            width="4rem"
+                            press="handleCancelPress"/>
+
+                    <Button
+                            icon="sap-icon://exit-full-screen"
+                            press="toggleFullScreen"
+                            visible="{= ${view>/actionButtonsInfo/midColumn/fullScreen}}"/>
+
+                    <Button
+                            icon="sap-icon://full-screen"
+                            press="toggleFullScreen"
+                            visible="{= !${view>/actionButtonsInfo/midColumn/fullScreen}}"/>
+
+                    <Button
+                            icon="sap-icon://decline"
+                            press="onClosePress"/>
+                
+                </uxap:actions>
+            
+            </uxap:ObjectPageDynamicHeaderTitle>
+        
+        </uxap:headerTitle>
+
+        <uxap:sections>
+
+            <uxap:ObjectPageSection>
+            
+
+                <uxap:subSections>
+                
+                    <uxap:ObjectPageSubSection>
+
+                        <uxap:blocks>
+
+                            <FlexBox id="fragmentContainer" direction="Column"/>
+                        
+                        </uxap:blocks>
+                    
+                    </uxap:ObjectPageSubSection>
+                
+                </uxap:subSections>
+            
+            </uxap:ObjectPageSection>
+        
+        </uxap:sections>
+
+
+    </uxap:ObjectPageLayout>
+        
+
+</mvc:View>

@@ -1,0 +1,53 @@
+<core:FragmentDefinition
+                xmlns="sap.m"
+                xmlns:core="sap.ui.core"
+                xmlns:form="sap.ui.layout.form">
+
+        <VBox   
+                class="sapUiSmallMargin">
+                <form:SimpleForm
+                                        id="simpleFormChange">
+
+                        <form:content>
+                        
+                                <Label text="{i18n>product}"/>
+                                <Input value="{products>product}"/>
+                        
+                                <Input value="{i18n>productName}"/>
+                                <Input value="{products>productName}"/>
+                        
+                                <Label text="{i18n>description}"/>
+                                <Input value="{products>description}"/>
+                        
+                                <Label text="{i18n>supplier}"/>
+                                <ComboBox
+                                        items="{products>/SuppliersSet}"
+                                        showSecondaryValues="true">
+                                        <core:ListItem key="{products>ID}"
+                                                        text="{products>supplierName}"
+                                                        additionalText="{products>supplier}"/>
+                                </ComboBox>
+                        
+                                <Label text="{i18n>category}"/>
+                                <Text text="{products>category/category}"/>
+                        
+                                <Label text="{i18n>subcategory}"/>
+                                <Text text="{products>subCategory/subCategory}"/>
+                        
+                                <Label text="{i18n>stock}"/>
+                                <Text text="{products>stock/name}"/>
+                        
+                                <Label text="{i18n>rating}"/>
+                                <Text text="{products>rating}"/>
+                        
+                                <Label text="{i18n>price}"/>
+                                <Text text="{products>price}"/>
+                        
+                        </form:content>
+
+                </form:SimpleForm>
+        
+        </VBox>
+
+
+</core:FragmentDefinition>
