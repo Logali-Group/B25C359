@@ -1,52 +1,148 @@
-<core:FragmentDefinition
+<core:FragmentDefinition xmlns:layout="sap.ui.layout"
                 xmlns="sap.m"
                 xmlns:core="sap.ui.core"
                 xmlns:form="sap.ui.layout.form">
 
         <VBox   
                 class="sapUiSmallMargin">
-                <form:SimpleForm
-                                        id="simpleFormChange">
 
-                        <form:content>
-                        
-                                <Label text="{i18n>product}"/>
-                                <Input value="{products>product}"/>
-                        
-                                <Input value="{i18n>productName}"/>
-                                <Input value="{products>productName}"/>
-                        
-                                <Label text="{i18n>description}"/>
-                                <Input value="{products>description}"/>
-                        
-                                <Label text="{i18n>supplier}"/>
-                                <ComboBox
-                                        items="{products>/SuppliersSet}"
-                                        showSecondaryValues="true">
-                                        <core:ListItem key="{products>ID}"
-                                                        text="{products>supplierName}"
-                                                        additionalText="{products>supplier}"/>
-                                </ComboBox>
-                        
-                                <Label text="{i18n>category}"/>
-                                <Text text="{products>category/category}"/>
-                        
-                                <Label text="{i18n>subcategory}"/>
-                                <Text text="{products>subCategory/subCategory}"/>
-                        
-                                <Label text="{i18n>stock}"/>
-                                <Text text="{products>stock/name}"/>
-                        
-                                <Label text="{i18n>rating}"/>
-                                <Text text="{products>rating}"/>
-                        
-                                <Label text="{i18n>price}"/>
-                                <Text text="{products>price}"/>
-                        
-                        </form:content>
+                <items>
 
-                </form:SimpleForm>
-        
+                        <form:SimpleForm
+                                                id="simpleFormChange"
+                                                editable="true">
+
+                                <form:content>
+                                
+                                        <Label text="{i18n>product}" required="true"/>
+                                        <Input value="{
+                                                path: 'form>/product',
+                                                type: 'sap.ui.model.type.String',
+                                                constraints: {
+                                                        minLength: 6,
+                                                        maxLength: 7
+                                                }
+                                        }"/>
+                                
+                                        <Label text="{i18n>productName}" required="true"/>
+                                        <Input value="{
+                                                path: 'form>/productName',
+                                                type: 'sap.ui.model.type.String',
+                                                constraints: {
+                                                        minLength: 4,
+                                                        maxLength: 40
+                                                }
+                                        }"/>
+                                
+                                        <Label text="{i18n>description}"/>
+                                        <TextArea value="{
+                                                path: 'form>/description',
+                                                type: 'sap.ui.model.type.String',
+                                                constraints: {
+                                                        maxLength: 255
+                                                }
+                                        }"/>
+                                
+                                        <Label text="{i18n>supplier}" required="true"/>
+                                        <ComboBox
+                                                items="{products>/SuppliersSet}"
+                                                showSecondaryValues="true"
+                                                selectedKey="{
+                                                        path: 'form>/supplier_ID',
+                                                        type: 'sap.ui.model.type.String',
+                                                        constraints: {
+                                                                minLength: 1
+                                                        }
+                                                }">
+                                                <core:ListItem key="{products>ID}"
+                                                                text="{products>supplierName}"
+                                                                additionalText="{products>supplier}"/>
+                                        </ComboBox>
+                                
+                                        <Label text="{i18n>category}" required="true"/>
+                                        <ComboBox
+                                                items="{products>/VH_CategoriesSet}"
+                                                selectedKey="{
+                                                        path: 'form>/category_ID',
+                                                        type: 'sap.ui.model.type.String',
+                                                        constraints: {
+                                                                minLength: 1
+                                                        }
+                                                }">
+                                                <core:ListItem key="{products>ID}"
+                                                                text="{products>category}"/>
+                                        </ComboBox>
+                                
+                                        <Label text="{i18n>subCategory}" required="true"/>
+                                        <ComboBox
+                                                items="{products>/VH_SubCategoriesSet}"
+                                                selectedKey="{
+                                                        path: 'form>/subCategory_ID',
+                                                        type: 'sap.ui.model.type.String',
+                                                        constraints: {
+                                                                minLength: 1
+                                                        }
+                                                }">
+                                                <core:ListItem key="{products>ID}"
+                                                                text="{products>subCategory}"/>
+                                        </ComboBox>
+                                
+                                        <Label text="{i18n>stock}" required="true"/>
+                                        <ComboBox
+                                                items="{products>/VH_Stock}"
+                                                selectedKey="{
+                                                        path: 'form>/stock_code',
+                                                        type: 'sap.ui.model.type.String',
+                                                        constraints: {
+                                                                minLength: 1
+                                                        }
+                                                }">
+                                                <core:ListItem key="{products>code}"
+                                                                text="{products>name}"/>
+                                        </ComboBox>
+                                
+                                        <Label text="{i18n>rating}" required="true"/>
+                                        <RatingIndicator value="{
+                                                path: 'form>/rating',
+                                                type: 'sap.ui.model.type.Integer',
+                                                constraints: {
+                                                        minimum: 1
+                                                }
+                                        }"/>
+                                
+                                        <Label text="{i18n>price}" required="true"/>
+                                        <Input value="{
+                                                path: 'form>/price',
+                                                type: 'sap.ui.model.type.Float',
+                                                constraints: {
+                                                        minimum: 1
+                                                }
+                                        }">
+                                                <layoutData>
+                                                        <layout:GridData span="XL6 L6 M6 S12"/>
+                                                </layoutData>
+                                        </Input>
+                                        <ComboBox
+                                                items="{currencies>/Currencies}"
+                                                showSecondaryValues="true"
+                                                selectedKey="{
+                                                        path: 'form>/currency',
+                                                        type: 'sap.ui.model.type.String',
+                                                        constraints: {
+                                                                minLength: 1
+                                                        }
+                                                }">
+                                                <core:ListItem key="{currencies>code}"
+                                                                text="{currencies>currency}"
+                                                                additionalText="({currencies>code})"/>
+                                        </ComboBox>
+
+                                </form:content>
+
+                        </form:SimpleForm>
+
+                </items>
+
         </VBox>
 
 

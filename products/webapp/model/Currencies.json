@@ -1,0 +1,256 @@
+{
+    "Currencies": [
+      {
+        "code": "AED",
+        "currency": "United Arab Emirates Dirham"
+      },
+      {
+        "code": "AFN",
+        "currency": "Afghan Afghani"
+      },
+      {
+        "code": "ALL",
+        "currency": "Albanian Lek"
+      },
+      {
+        "code": "AMD",
+        "currency": "Armenian Dram"
+      },
+      {
+        "code": "ANG",
+        "currency": "Netherlands Antillean Guilder"
+      },
+      {
+        "code": "AOA",
+        "currency": "Angolan Kwanza"
+      },
+      {
+        "code": "ARS",
+        "currency": "Argentine Peso"
+      },
+      {
+        "code": "AUD",
+        "currency": "Australian Dollar"
+      },
+      {
+        "code": "AWG",
+        "currency": "Aruban Florin"
+      },
+      {
+        "code": "AZN",
+        "currency": "Azerbaijani Manat"
+      },
+      {
+        "code": "BAM",
+        "currency": "Bosnia-Herzegovina Convertible Mark"
+      },
+      {
+        "code": "BBD",
+        "currency": "Barbadian Dollar"
+      },
+      {
+        "code": "BDT",
+        "currency": "Bangladeshi Taka"
+      },
+      {
+        "code": "BGN",
+        "currency": "Bulgarian Lev"
+      },
+      {
+        "code": "BHD",
+        "currency": "Bahraini Dinar"
+      },
+      {
+        "code": "BIF",
+        "currency": "Burundian Franc"
+      },
+      {
+        "code": "BMD",
+        "currency": "Bermudian Dollar"
+      },
+      {
+        "code": "BND",
+        "currency": "Brunei Dollar"
+      },
+      {
+        "code": "BOB",
+        "currency": "Bolivian Boliviano"
+      },
+      {
+        "code": "BRL",
+        "currency": "Brazilian Real"
+      },
+      {
+        "code": "BSD",
+        "currency": "Bahamian Dollar"
+      },
+      {
+        "code": "BTN",
+        "currency": "Bhutanese Ngultrum"
+      },
+      {
+        "code": "BWP",
+        "currency": "Botswanan Pula"
+      },
+      {
+        "code": "BYN",
+        "currency": "Belarusian Ruble"
+      },
+      {
+        "code": "BZD",
+        "currency": "Belize Dollar"
+      },
+      {
+        "code": "CAD",
+        "currency": "Canadian Dollar"
+      },
+      {
+        "code": "CDF",
+        "currency": "Congolese Franc"
+      },
+      {
+        "code": "CHF",
+        "currency": "Swiss Franc"
+      },
+      {
+        "code": "CLP",
+        "currency": "Chilean Peso"
+      },
+      {
+        "code": "CNY",
+        "currency": "Chinese Yuan"
+      },
+      {
+        "code": "COP",
+        "currency": "Colombian Peso"
+      },
+      {
+        "code": "CRC",
+        "currency": "Costa Rican Colón"
+      },
+      {
+        "code": "CUP",
+        "currency": "Cuban Peso"
+      },
+      {
+        "code": "CVE",
+        "currency": "Cape Verdean Escudo"
+      },
+      {
+        "code": "CZK",
+        "currency": "Czech Koruna"
+      },
+      {
+        "code": "DJF",
+        "currency": "Djiboutian Franc"
+      },
+      {
+        "code": "DKK",
+        "currency": "Danish Krone"
+      },
+      {
+        "code": "DOP",
+        "currency": "Dominican Peso"
+      },
+      {
+        "code": "DZD",
+        "currency": "Algerian Dinar"
+      },
+      {
+        "code": "EGP",
+        "currency": "Egyptian Pound"
+      },
+      {
+        "code": "ERN",
+        "currency": "Eritrean Nakfa"
+      },
+      {
+        "code": "ETB",
+        "currency": "Ethiopian Birr"
+      },
+      {
+        "code": "EUR",
+        "currency": "Euro"
+      },
+      {
+        "code": "FJD",
+        "currency": "Fijian Dollar"
+      },
+      {
+        "code": "FKP",
+        "currency": "Falkland Islands Pound"
+      },
+      {
+        "code": "FOK",
+        "currency": "Faroese Króna"
+      },
+      {
+        "code": "GBP",
+        "currency": "British Pound Sterling"
+      },
+      {
+        "code": "USD",
+        "currency": "United States Dollar"
+      },
+      {
+        "code": "UYU",
+        "currency": "Uruguayan Peso"
+      },
+      {
+        "code": "UZS",
+        "currency": "Uzbekistan Som"
+      },
+      {
+        "code": "VES",
+        "currency": "Venezuelan Bolívar Soberano"
+      },
+      {
+        "code": "VND",
+        "currency": "Vietnamese Dong"
+      },
+      {
+        "code": "VUV",
+        "currency": "Vanuatu Vatu"
+      },
+      {
+        "code": "WST",
+        "currency": "Samoan Tala"
+      },
+      {
+        "code": "XAF",
+        "currency": "CFA Franc BEAC"
+      },
+      {
+        "code": "XCD",
+        "currency": "East Caribbean Dollar"
+      },
+      {
+        "code": "XDR",
+        "currency": "Special Drawing Rights"
+      },
+      {
+        "code": "XOF",
+        "currency": "CFA Franc BCEAO"
+      },
+      {
+        "code": "XPF",
+        "currency": "CFP Franc"
+      },
+      {
+        "code": "YER",
+        "currency": "Yemeni Rial"
+      },
+      {
+        "code": "ZAR",
+        "currency": "South African Rand"
+      },
+      {
+        "code": "ZMW",
+        "currency": "Zambian Kwacha"
+      },
+      {
+        "code": "ZWL",
+        "currency": "Zimbabwean Dollar"
+      }
+    ]
+  }

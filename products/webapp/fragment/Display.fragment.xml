@@ -27,17 +27,19 @@
                                 <Label text="{i18n>category}"/>
                                 <Text text="{products>category/category}"/>
                         
-                                <Label text="{i18n>subcategory}"/>
+                                <Label text="{i18n>subCategory}"/>
                                 <Text text="{products>subCategory/subCategory}"/>
                         
                                 <Label text="{i18n>stock}"/>
                                 <Text text="{products>stock/name}"/>
                         
                                 <Label text="{i18n>rating}"/>
-                                <Text text="{products>rating}"/>
+                                <RatingIndicator value="{products>rating}"
+                                                        enabled="false"/>
                         
                                 <Label text="{i18n>price}"/>
-                                <Text text="{products>price}"/>
+                                <ObjectNumber number="{products>price}"
+                                                unit="{products>currency}"/>
                         
                         </form:content>
 

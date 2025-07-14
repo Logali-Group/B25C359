@@ -111,10 +111,23 @@ export default class Master extends BaseController {
 
         const viewModel = this.getModel("view") as JSONModel;
         viewModel.setProperty("/layout","TwoColumnsMidExpanded");
+        viewModel.setProperty("/action","edit");
 
         const router = this.getRouter();
         router.navTo("RouteDetails", {
             id: id
+        });
+    }
+
+    public handleCreatePress () : void {
+
+        const viewModel = this.getModel("view") as JSONModel;
+        viewModel.setProperty("/layout","TwoColumnsMidExpanded");
+        viewModel.setProperty("/action","create");
+
+        const router = this.getRouter();
+        router.navTo("RouteDetails", {
+            id: 'da09a07b-9889-4968-a071-436cff43e64a'
         });
     }
 }

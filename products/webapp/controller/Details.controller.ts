@@ -6,6 +6,12 @@ import Button from "sap/m/Button";
 import VBox from "sap/m/VBox";
 import FlexBox from "sap/m/FlexBox";
 import Context from "sap/ui/model/odata/v4/Context";
+import Utils from "products/utils/Utils";
+import SimpleFormValidator from "products/utils/Validator";
+import Control from "sap/ui/core/Control";
+import MessageBox from "sap/m/MessageBox";
+import SimpleForm from "sap/ui/layout/form/SimpleForm";
+import MessageToast from "sap/m/MessageToast";
 
 /**
  * @namespace products.controller
@@ -17,7 +23,9 @@ export default class Details extends BaseController {
 
     public onInit ( ) : void | undefined {
         const router = this.getRouter();
-        router.getRoute("RouteDetails")?.attachPatternMatched(this.onBindingContext.bind(this))
+        router.getRoute("RouteDetails")?.attachPatternMatched(this.onBindingContext.bind(this));
+
+        this.formModel();
     }
 
     private onBindingContext (event : Route$PatternMatchedEvent) : void {
@@ -25,11 +33,58 @@ export default class Details extends BaseController {
         const arg = event.getParameter("arguments") as any;
         const id = arg.id;
         const view = this.getView() as View;
+        const viewModel = this.getModel("view") as JSONModel;
+        let sAction = viewModel.getProperty("/action");
+
+        if (id && viewModel.getProperty("/layout") === 'OneColumn') {
+            viewModel.setProperty("/layout","TwoColumnsMidExpanded");
+        }
         
         view.bindElement({
             path: `/ProductsSet(${id})`,
-            model: 'products'
+            model: 'products',
+            parameters: {
+                $select: 'ID,product,productName,description,supplier_ID,category_ID,subCategory_ID,stock_code,rating,price,currency'
+            },
+            events: {
+                dataRequested: () => {
+                    view.setBusy(true);
+                },
+                dataReceived: () => {
+                    view.setBusy(false);
+                    if (sAction === 'create') {
+                        this.toggleButtonAndView(true);
+                    } else {
+                        this.showFormFragment('Display');
+                    }
+                } 
+            }
         });
+    }
+
+    private formModel () {
+        let data = {
+            product: "",
+            productName: "",
+            description: "",
+            supplier_ID: "",
+            category_ID: "",
+            subCategory_ID: "",
+            stock_code: "",
+            rating: "",
+            price: null,
+            currency: ""
+        };
+        let model = new JSONModel(data);
+        this.setModel(model, "form");
+    }
+
+    private validate () : boolean {
+        const simpleFormValidator = new SimpleFormValidator();
+        const oVBox = this.formFragments[1] as VBox;
+        const aggregations  = oVBox.getAggregation("items") as Control[];
+        const simpleForm = aggregations[0] as SimpleForm;
+        return simpleFormValidator.validate(simpleForm);
     }
 
     public onClosePress () : void {
@@ -53,6 +108,13 @@ export default class Details extends BaseController {
     }
 
     public handleEditPress () : void {
+        const formModel = this.getModel("form") as JSONModel;
+        const bindingContext = this.getView()?.getBindingContext("products") as Context;
+        console.log(bindingContext.getObject());
+        const utils = new Utils();
+        const data = utils.copy(bindingContext);
+        console.log(data);
+        formModel.setData(data);
         this.toggleButtonAndView(true);
     }
 
@@ -61,7 +123,15 @@ export default class Details extends BaseController {
     }
 
     public handleSavePress () : void {
-        this.toggleButtonAndView(false);
+
+        const resourceBundle = this.getResourceBundle();
+
+        if (!this.validate()) {
+            MessageBox.error(resourceBundle.getText("vilidateError") || '');
+        } else {
+            //MessageToast.show("Editado");
+            this.toggleButtonAndView(false);
+        }
     }
 
     public handleCancelPress () : void {

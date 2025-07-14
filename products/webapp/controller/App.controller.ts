@@ -16,6 +16,7 @@ export default class App extends BaseController {
             title: "",
             layout: "OneColumn",
             previosLayout: "",
+            action: "", //edit,create
             actionButtonsInfo: {
                 midColumn: {
                     fullScreen: false
