@@ -1,0 +1,28 @@
+{
+  "name": "mp",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap/cds": "^9",
+    "express": "^4"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^2",
+    "@cap-js/cds-types": "^0.13.0"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch-cap": "cds watch --open products_cap_cds_annotations/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-xml": "cds watch --open products_xml_annotations/webapp/index.html?sap-ui-xx-viewCache=false"
+  },
+  "sapux": [
+    "app/products_cap_cds_annotations",
+    "app/products_xml_annotations"
+  ]
+}
