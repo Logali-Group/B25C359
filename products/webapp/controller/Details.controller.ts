@@ -11,7 +11,6 @@ import SimpleFormValidator from "products/utils/Validator";
 import Control from "sap/ui/core/Control";
 import MessageBox from "sap/m/MessageBox";
 import SimpleForm from "sap/ui/layout/form/SimpleForm";
-import MessageToast from "sap/m/MessageToast";
 
 /**
  * @namespace products.controller
@@ -20,6 +19,8 @@ import MessageToast from "sap/m/MessageToast";
 export default class Details extends BaseController {
 
     formFragments : VBox[] = [];
+
+    aux : boolean = true;
 
     public onInit ( ) : void | undefined {
         const router = this.getRouter();
@@ -52,7 +53,7 @@ export default class Details extends BaseController {
                 },
                 dataReceived: () => {
                     view.setBusy(false);
-                    if (sAction === 'create') {
+                    if (sAction === 'create' && this.aux) {
                         this.toggleButtonAndView(true);
                     } else {
                         this.showFormFragment('Display');
@@ -118,19 +119,30 @@ export default class Details extends BaseController {
         this.toggleButtonAndView(true);
     }
 
-    public handleDeletePress () : void {
-
+    public async handleDeletePress () : Promise<void> {
+        const context = this.getView()?.getBindingContext("products") as Context;
+        const utils = new Utils();
+        await utils.crud(this,'delete',context);
+        this.onClosePress();
     }
 
-    public handleSavePress () : void {
+    public async handleSavePress () : Promise<void> {
 
         const resourceBundle = this.getResourceBundle();
 
         if (!this.validate()) {
             MessageBox.error(resourceBundle.getText("vilidateError") || '');
         } else {
-            //MessageToast.show("Editado");
+            const utils = new Utils();
+            const context = this.getView()?.getBindingContext("products") as Context;
+            const formModel = this.getModel("form") as JSONModel;
+            await utils.crud(this,'update',context, formModel);
             this.toggleButtonAndView(false);
+        }
+
+        const viewModel = this.getModel("view") as JSONModel;
+        if (viewModel.getProperty("/action") === 'create') {
+            this.aux = false;
         }
     }
 

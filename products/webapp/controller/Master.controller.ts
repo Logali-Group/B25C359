@@ -13,6 +13,7 @@ import Event from "sap/ui/base/Event";
 import ColumnListItem from "sap/m/ColumnListItem";
 import Context from "sap/ui/model/odata/v4/Context";
 import JSONModel from "sap/ui/model/json/JSONModel";
+import Utils from "products/utils/Utils";
 
 /**
  * @namespace products.controller
@@ -119,15 +120,18 @@ export default class Master extends BaseController {
         });
     }
 
-    public handleCreatePress () : void {
+    public async handleCreatePress () : Promise<void> {
 
         const viewModel = this.getModel("view") as JSONModel;
         viewModel.setProperty("/layout","TwoColumnsMidExpanded");
         viewModel.setProperty("/action","create");
 
+        const utils = new Utils();
+        const id = await utils.crud(this, 'create');
+
         const router = this.getRouter();
         router.navTo("RouteDetails", {
-            id: 'da09a07b-9889-4968-a071-436cff43e64a'
+            id: id
         });
     }
 }
