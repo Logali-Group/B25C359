@@ -1,0 +1,124 @@
+<mvc:View 
+        controllerName="com.logaligroup.legalguardians.ext.view.Details"
+        xmlns="sap.m" 
+        xmlns:uxap="sap.uxap"
+        xmlns:core="sap.ui.core" 
+        xmlns:mvc="sap.ui.core.mvc" 
+        xmlns:macros="sap.fe.macros">
+
+
+        <uxap:ObjectPageLayout>
+        
+            <uxap:headerTitle>
+
+                <uxap:ObjectPageDynamicHeaderTitle>
+
+                        <uxap:expandedHeading>
+                            <Title text="{fullName}"
+                                    level="H2"
+                                    wrapping="true"/>
+                        </uxap:expandedHeading>
+
+
+                        <uxap:expandedContent>
+                            <Text text="{numberDocument}"/>
+                        </uxap:expandedContent>
+
+                </uxap:ObjectPageDynamicHeaderTitle>
+            
+            </uxap:headerTitle>
+
+            <uxap:sections>
+
+                <uxap:ObjectPageSection title="{i18n>GeneralInformation}"
+                                    titleLevel="H2">
+                    <uxap:subSections>
+
+                            <uxap:ObjectPageSubSection title="{i18n>PersonalInformation}">
+                                <uxap:blocks>
+                                    <macros:Form id="FieldGroupPersonalInformation"
+                                                metaPath="@UI.FieldGroup"/>
+                                </uxap:blocks>
+                            </uxap:ObjectPageSubSection>
+
+                            <uxap:ObjectPageSubSection title="{i18n>AddressInformation}">
+                                <uxap:blocks>
+                                    <macros:Form    id="FieldGroupAddressInformation"
+                                                    metaPath="address/@UI.FieldGroup#AddressInformation"/>
+                                </uxap:blocks>
+                            </uxap:ObjectPageSubSection>
+
+                            <uxap:ObjectPageSubSection title="{i18n>ContactInformation}">
+                                <uxap:blocks>
+                                    <macros:Form    id="FieldGroupContactInformation"
+                                                    metaPath="contact/@UI.FieldGroup#ContactInformation"/>
+                                </uxap:blocks>
+                            </uxap:ObjectPageSubSection>
+                    
+                    </uxap:subSections>
+                </uxap:ObjectPageSection>
+
+
+                <uxap:ObjectPageSection title="{i18n>EmergencyCcntacts}"
+                                    titleLevel="H2">
+                    <uxap:subSections>
+
+                        <uxap:ObjectPageSubSection>
+
+                            <uxap:blocks>
+
+                                <macros:Table
+                                                id="LineItemToContacts"
+                                                metaPath="toContacts/@com.sap.vocabularies.UI.v1.LineItem"/>
+                            
+                            </uxap:blocks>
+
+                        </uxap:ObjectPageSubSection>
+                    
+                    </uxap:subSections>
+                </uxap:ObjectPageSection>
+
+                <uxap:ObjectPageSection title="{i18n>Patients}"
+                                    titleLevel="H2">
+                    <uxap:subSections>
+
+                        <uxap:ObjectPageSubSection>
+
+                            <uxap:blocks>
+
+                                <macros:Table
+                                                id="LineItemToPatients"
+                                                metaPath="toPatients/@com.sap.vocabularies.UI.v1.LineItem"/>
+                            
+                            </uxap:blocks>
+
+                        </uxap:ObjectPageSubSection>
+                    
+                    </uxap:subSections>
+                </uxap:ObjectPageSection>
+
+                <uxap:ObjectPageSection title="{i18n>Attachments}"
+                                    titleLevel="H2">
+                    <uxap:subSections>
+
+                        <uxap:ObjectPageSubSection>
+
+                            <uxap:blocks>
+
+                                <macros:Table
+                                                id="LineItemAttachments"
+                                                metaPath="attachments/@com.sap.vocabularies.UI.v1.LineItem"/>
+                            
+                            </uxap:blocks>
+
+                        </uxap:ObjectPageSubSection>
+                    
+                    </uxap:subSections>
+                </uxap:ObjectPageSection>
+            
+            </uxap:sections>
+        
+        
+        </uxap:ObjectPageLayout>
+
+</mvc:View>
