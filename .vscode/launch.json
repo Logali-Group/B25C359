@@ -71,6 +71,29 @@
         "FIORI_TOOLS_URL_PARAMS": "sap-ui-xx-viewCache=false",
         "run.config": "{\"handlerId\":\"fiori_tools\",\"runnableId\":\"/home/user/projects/products/products\"}"
       }
+    },
+    {
+      "name": "Start Index",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/products",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": [
+        "fiori",
+        "run"
+      ],
+      "args": [
+        "--open",
+        "index.html"
+      ],
+      "console": "internalConsole",
+      "internalConsoleOptions": "openOnSessionStart",
+      "outputCapture": "std",
+      "env": {
+        "run.config": "{\"handlerId\":\"fiori_tools\",\"runnableId\":\"/home/user/projects/B25C359/products\"}",
+        "FIORI_TOOLS_BACKEND_CONFIG": "[{\"path\":\"/odata\",\"url\":\"http://159.65.96.144:7001\"}]",
+        "FIORI_TOOLS_URL_PARAMS": "sap-ui-xx-viewCache=false"
+      }
     }
   ]
 }

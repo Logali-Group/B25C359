@@ -57,6 +57,7 @@ export default class Details extends BaseController {
                         this.toggleButtonAndView(true);
                     } else {
                         this.showFormFragment('Display');
+                        this.toggleButtonAndView(false); // Nueva línea
                     }
                 } 
             }
