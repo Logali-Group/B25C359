@@ -14,15 +14,21 @@
   },
   "devDependencies": {
     "@cap-js/sqlite": "^2",
-    "@cap-js/cds-types": "^0.13.0"
+    "@cap-js/cds-types": "^0.13.0",
+    "cds-plugin-ui5": "^0.13.0"
   },
   "scripts": {
     "start": "cds-serve",
     "watch-cap": "cds watch --open products_cap_cds_annotations/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-xml": "cds watch --open products_xml_annotations/webapp/index.html?sap-ui-xx-viewCache=false"
+    "watch-xml": "cds watch --open products_xml_annotations/webapp/index.html?sap-ui-xx-viewCache=false",
+    "w-fpm": "cds watch --open productsfpm/index.html?sap-ui-xx-viewCache=false --livereload false"
   },
   "sapux": [
     "app/products_cap_cds_annotations",
-    "app/products_xml_annotations"
+    "app/products_xml_annotations",
+    "app/products_fpm"
+  ],
+  "workspaces": [
+    "app/*"
   ]
 }

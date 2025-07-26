@@ -1,0 +1,1 @@
+using ProductSRV as service from '../../srv/products';

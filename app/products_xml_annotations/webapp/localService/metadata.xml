@@ -19,6 +19,7 @@
     </edmx:Reference>
     <edmx:DataServices>
         <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="ProductSRV">
+
             <Annotation Term="Core.Links">
                 <Collection>
                     <Record>
@@ -27,6 +28,7 @@
                     </Record>
                 </Collection>
             </Annotation>
+
             <EntityContainer Name="EntityContainer">
                 <EntitySet Name="Products" EntityType="ProductSRV.Products">
                     <NavigationPropertyBinding Path="currency" Target="VH_Currencies"/>
@@ -38,6 +40,7 @@
                 </EntitySet>
                 <EntitySet Name="VH_Currencies_texts" EntityType="ProductSRV.VH_Currencies_texts"/>
             </EntityContainer>
+
             <EntityType Name="Products">
                 <Key>
                     <PropertyRef Name="ID"/>
@@ -58,6 +61,7 @@
                 <NavigationProperty Name="DraftAdministrativeData" Type="ProductSRV.DraftAdministrativeData" ContainsTarget="true"/>
                 <NavigationProperty Name="SiblingEntity" Type="ProductSRV.Products"/>
             </EntityType>
+
             <EntityType Name="VH_Currencies">
                 <Key>
                     <PropertyRef Name="code"/>
@@ -72,6 +76,7 @@
                     <ReferentialConstraint Property="code" ReferencedProperty="code"/>
                 </NavigationProperty>
             </EntityType>
+
             <EntityType Name="DraftAdministrativeData">
                 <Key>
                     <PropertyRef Name="DraftUUID"/>
@@ -85,6 +90,7 @@
                 <Property Name="InProcessByUser" Type="Edm.String" MaxLength="256"/>
                 <Property Name="DraftIsProcessedByMe" Type="Edm.Boolean"/>
             </EntityType>
+
             <EntityType Name="VH_Currencies_texts">
                 <Key>
                     <PropertyRef Name="locale"/>
@@ -95,241 +101,36 @@
                 <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
                 <Property Name="code" Type="Edm.String" Nullable="false"/>
             </EntityType>
+
             <Action Name="draftPrepare" IsBound="true" EntitySetPath="in">
                 <Parameter Name="in" Type="ProductSRV.Products"/>
                 <Parameter Name="SideEffectsQualifier" Type="Edm.String"/>
                 <ReturnType Type="ProductSRV.Products"/>
             </Action>
+
             <Action Name="draftActivate" IsBound="true" EntitySetPath="in">
                 <Parameter Name="in" Type="ProductSRV.Products"/>
                 <ReturnType Type="ProductSRV.Products"/>
             </Action>
+
             <Action Name="draftEdit" IsBound="true" EntitySetPath="in">
                 <Parameter Name="in" Type="ProductSRV.Products"/>
                 <Parameter Name="PreserveChanges" Type="Edm.Boolean"/>
                 <ReturnType Type="ProductSRV.Products"/>
             </Action>
-            <Annotations Target="ProductSRV.Products">
-                <Annotation Term="UI.SelectionFields">
-                    <Collection>
-                        <PropertyPath>product</PropertyPath>
-                        <PropertyPath>currency_code</PropertyPath>
-                    </Collection>
-                </Annotation>
-                <Annotation Term="UI.HeaderInfo">
-                    <Record Type="UI.HeaderInfoType">
-                        <PropertyValue Property="TypeName" String="Product"/>
-                        <PropertyValue Property="TypeNamePlural" String="Products"/>
-                        <PropertyValue Property="Title">
-                            <Record Type="UI.DataField">
-                                <PropertyValue Property="Value" Path="productName"/>
-                            </Record>
-                        </PropertyValue>
-                        <PropertyValue Property="Description">
-                            <Record Type="UI.DataField">
-                                <PropertyValue Property="Value" Path="product"/>
-                            </Record>
-                        </PropertyValue>
-                    </Record>
-                </Annotation>
-                <Annotation Term="UI.LineItem">
-                    <Collection>
-                        <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="product"/>
-                        </Record>
-                        <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="productName"/>
-                        </Record>
-                        <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="description"/>
-                        </Record>
-                        <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="price"/>
-                        </Record>
-                    </Collection>
-                </Annotation>
-                <Annotation Term="UI.FieldGroup" Qualifier="ProductInformation">
-                    <Record Type="UI.FieldGroupType">
-                        <PropertyValue Property="Data">
-                            <Collection>
-                                <Record Type="UI.DataField">
-                                    <PropertyValue Property="Value" Path="product"/>
-                                </Record>
-                                <Record Type="UI.DataField">
-                                    <PropertyValue Property="Value" Path="productName"/>
-                                </Record>
-                                <Record Type="UI.DataField">
-                                    <PropertyValue Property="Value" Path="description"/>
-                                </Record>
-                                <Record Type="UI.DataField">
-                                    <PropertyValue Property="Value" Path="price"/>
-                                </Record>
-                            </Collection>
-                        </PropertyValue>
-                        <PropertyValue Property="Label" String="Product Information"/>
-                    </Record>
-                </Annotation>
-                <Annotation Term="UI.Facets">
-                    <Collection>
-                        <Record Type="UI.ReferenceFacet">
-                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#ProductInformation"/>
-                            <PropertyValue Property="Label" String="Product Information"/>
-                            <PropertyValue Property="ID" String="ProductInformation"/>
-                        </Record>
-                    </Collection>
-                </Annotation>
-            </Annotations>
-            <Annotations Target="ProductSRV.EntityContainer/Products">
-                <Annotation Term="Common.DraftRoot">
-                    <Record Type="Common.DraftRootType">
-                        <PropertyValue Property="ActivationAction" String="ProductSRV.draftActivate"/>
-                        <PropertyValue Property="EditAction" String="ProductSRV.draftEdit"/>
-                        <PropertyValue Property="PreparationAction" String="ProductSRV.draftPrepare"/>
-                    </Record>
-                </Annotation>
-            </Annotations>
-            <Annotations Target="ProductSRV.Products/ID">
-                <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
-            </Annotations>
-            <Annotations Target="ProductSRV.Products/product">
-                <Annotation Term="Common.Label" String="Product"/>
-            </Annotations>
-            <Annotations Target="ProductSRV.Products/productName">
-                <Annotation Term="Common.Label" String="Product Name"/>
-            </Annotations>
-            <Annotations Target="ProductSRV.Products/description">
-                <Annotation Term="Common.Label" String="Description"/>
-            </Annotations>
-            <Annotations Target="ProductSRV.Products/price">
-                <Annotation Term="Measures.ISOCurrency" Path="currency_code"/>
-                <Annotation Term="Common.Label" String="Price"/>
-            </Annotations>
-            <Annotations Target="ProductSRV.Products/currency">
-                <Annotation Term="Common.Label" String="Currency"/>
-            </Annotations>
-            <Annotations Target="ProductSRV.Products/currency_code">
-                <Annotation Term="Common.IsCurrency" Bool="true"/>
-                <Annotation Term="Common.Label" String="Currency"/>
-                <Annotation Term="Common.ValueList">
-                    <Record Type="Common.ValueListType">
-                        <PropertyValue Property="Label" String="Currency"/>
-                        <PropertyValue Property="CollectionPath" String="VH_Currencies"/>
-                        <PropertyValue Property="Parameters">
-                            <Collection>
-                                <Record Type="Common.ValueListParameterInOut">
-                                    <PropertyValue Property="LocalDataProperty" PropertyPath="currency_code"/>
-                                    <PropertyValue Property="ValueListProperty" String="code"/>
-                                </Record>
-                                <Record Type="Common.ValueListParameterDisplayOnly">
-                                    <PropertyValue Property="ValueListProperty" String="name"/>
-                                </Record>
-                            </Collection>
-                        </PropertyValue>
-                    </Record>
-                </Annotation>
-            </Annotations>
-            <Annotations Target="ProductSRV.Products/IsActiveEntity">
-                <Annotation Term="UI.Hidden" Bool="true"/>
-            </Annotations>
-            <Annotations Target="ProductSRV.Products/HasActiveEntity">
-                <Annotation Term="UI.Hidden" Bool="true"/>
-            </Annotations>
-            <Annotations Target="ProductSRV.Products/HasDraftEntity">
-                <Annotation Term="UI.Hidden" Bool="true"/>
-            </Annotations>
-            <Annotations Target="ProductSRV.Products/DraftAdministrativeData">
-                <Annotation Term="UI.Hidden" Bool="true"/>
-            </Annotations>
-            <Annotations Target="ProductSRV.VH_Currencies">
-                <Annotation Term="UI.Identification">
-                    <Collection>
-                        <Record Type="UI.DataField">
-                            <PropertyValue Property="Value" Path="name"/>
-                        </Record>
-                    </Collection>
-                </Annotation>
-            </Annotations>
-            <Annotations Target="ProductSRV.EntityContainer/VH_Currencies">
-                <Annotation Term="Capabilities.DeleteRestrictions">
-                    <Record Type="Capabilities.DeleteRestrictionsType">
-                        <PropertyValue Property="Deletable" Bool="false"/>
-                    </Record>
-                </Annotation>
-                <Annotation Term="Capabilities.InsertRestrictions">
-                    <Record Type="Capabilities.InsertRestrictionsType">
-                        <PropertyValue Property="Insertable" Bool="false"/>
-                    </Record>
-                </Annotation>
-                <Annotation Term="Capabilities.UpdateRestrictions">
-                    <Record Type="Capabilities.UpdateRestrictionsType">
-                        <PropertyValue Property="Updatable" Bool="false"/>
-                    </Record>
-                </Annotation>
-            </Annotations>
-            <Annotations Target="ProductSRV.VH_Currencies/name">
-                <Annotation Term="Common.Label" String="Nombre"/>
-            </Annotations>
-            <Annotations Target="ProductSRV.VH_Currencies/descr">
-                <Annotation Term="Common.Label" String="Descripción"/>
-            </Annotations>
-            <Annotations Target="ProductSRV.VH_Currencies/code">
-                <Annotation Term="Validation.AllowedValues">
-                    <Collection>
-                        <Record Type="Validation.AllowedValue">
-                            <Annotation Term="Core.SymbolicName" String="USD"/>
-                            <PropertyValue Property="Value" String="USD"/>
-                        </Record>
-                        <Record Type="Validation.AllowedValue">
-                            <Annotation Term="Core.SymbolicName" String="EUR"/>
-                            <PropertyValue Property="Value" String="EUR"/>
-                        </Record>
-                        <Record Type="Validation.AllowedValue">
-                            <Annotation Term="Core.SymbolicName" String="COP"/>
-                            <PropertyValue Property="Value" String="COP"/>
-                        </Record>
-                    </Collection>
-                </Annotation>
-            </Annotations>
-            <Annotations Target="ProductSRV.DraftAdministrativeData">
-                <Annotation Term="Common.Label" String="Datos administrativos en borrador"/>
-            </Annotations>
-            <Annotations Target="ProductSRV.DraftAdministrativeData/DraftUUID">
-                <Annotation Term="UI.Hidden" Bool="true"/>
-                <Annotation Term="Common.Label" String="Borrador (ID técnico)"/>
-                <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
-            </Annotations>
-            <Annotations Target="ProductSRV.DraftAdministrativeData/CreationDateTime">
-                <Annotation Term="Common.Label" String="Borrador creado el"/>
-            </Annotations>
-            <Annotations Target="ProductSRV.DraftAdministrativeData/CreatedByUser">
-                <Annotation Term="Common.Label" String="Borrador creado por"/>
-            </Annotations>
-            <Annotations Target="ProductSRV.DraftAdministrativeData/DraftIsCreatedByMe">
-                <Annotation Term="UI.Hidden" Bool="true"/>
-                <Annotation Term="Common.Label" String="Borrador creado por mí"/>
-            </Annotations>
-            <Annotations Target="ProductSRV.DraftAdministrativeData/LastChangeDateTime">
-                <Annotation Term="Common.Label" String="Fecha del último cambio en borrador"/>
-            </Annotations>
-            <Annotations Target="ProductSRV.DraftAdministrativeData/LastChangedByUser">
-                <Annotation Term="Common.Label" String="Autor del último cambio en borrador"/>
-            </Annotations>
-            <Annotations Target="ProductSRV.DraftAdministrativeData/InProcessByUser">
-                <Annotation Term="Common.Label" String="Borrador en proceso por"/>
-            </Annotations>
-            <Annotations Target="ProductSRV.DraftAdministrativeData/DraftIsProcessedByMe">
-                <Annotation Term="UI.Hidden" Bool="true"/>
-                <Annotation Term="Common.Label" String="Borrador en proceso por mí"/>
-            </Annotations>
+
             <Annotations Target="ProductSRV.VH_Currencies_texts/locale">
                 <Annotation Term="Common.Label" String="Código de idioma"/>
             </Annotations>
+
             <Annotations Target="ProductSRV.VH_Currencies_texts/name">
                 <Annotation Term="Common.Label" String="Nombre"/>
             </Annotations>
+
             <Annotations Target="ProductSRV.VH_Currencies_texts/descr">
                 <Annotation Term="Common.Label" String="Descripción"/>
             </Annotations>
+
             <Annotations Target="ProductSRV.VH_Currencies_texts/code">
                 <Annotation Term="Validation.AllowedValues">
                     <Collection>
@@ -347,7 +148,9 @@
                         </Record>
                     </Collection>
                 </Annotation>
+
             </Annotations>
+
         </Schema>
     </edmx:DataServices>
 </edmx:Edmx>
