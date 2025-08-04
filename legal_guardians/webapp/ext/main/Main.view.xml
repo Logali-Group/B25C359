@@ -4,7 +4,8 @@
         xmlns:f="sap.f"
         xmlns:core="sap.ui.core" 
         xmlns:mvc="sap.ui.core.mvc" 
-        xmlns:macros="sap.fe.macros">
+        xmlns:macros="sap.fe.macros"
+        xmlns:table="sap.fe.macros.table">
 
         <f:DynamicPage>
         
@@ -41,7 +42,22 @@
                 <macros:Table
                                 id="Table"
                                 metaPath="@com.sap.vocabularies.UI.v1.LineItem"
-                                filterBar="Filter"/>
+                                filterBar="Filter"
+                                selectionChange="onSelectionChange">
+                    <macros:actions>
+
+                        <table:Action
+                                        id="create"
+                                        text="{i18n>create}"
+                                        press="onCreatePress"/>
+                        <table:Action
+                                        id="deleteAll"
+                                        text="{i18n>delete}"
+                                        press="onDeletePress"
+                                        enabled="{view>/isActive}"/>
+                    
+                    </macros:actions>
+                </macros:Table>
             
             </f:content>
         

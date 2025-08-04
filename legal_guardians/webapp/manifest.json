@@ -108,7 +108,7 @@
         "LegalGuardiansSetMain": {
           "type": "Component",
           "id": "LegalGuardiansSetMain",
-          "name": "sap.fe.core.fpm",
+          "name": "sap.fe.templates.ListReport",
           "options": {
             "settings": {
               "navigation": {
@@ -126,7 +126,7 @@
         "LegalGuardiansSetDetailsPage": {
           "type": "Component",
           "id": "LegalGuardiansSetDetailsPage",
-          "name": "sap.fe.core.fpm",
+          "name": "sap.fe.templates.ObjectPage",
           "options": {
             "settings": {
               "navigation": {},
