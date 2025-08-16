@@ -1,11 +1,71 @@
 <core:FragmentDefinition
                 xmlns="sap.m"
-                xmlns:core="sap.ui.core">
+                xmlns:core="sap.ui.core"
+                xmlns:form="sap.ui.layout.form">
 
-        <Dialog id="dialog">
+        <Dialog id="dialog"
+                    title="{i18n>titleAppointment}">
 
             <content>
-            
+
+                <form:SimpleForm id="form">
+
+                    <form:content>
+
+                        <Label id="lPatient" text="{i18n>patient}" required="true"/>
+                        <ComboBox id="cbPatient"
+                                items="{/PatientsSet}"
+                                selectedKey="{form>/patient_ID}">
+                            <items>
+                                <core:Item key="{ID}" text="{fullName}"/>
+                            </items>
+                        </ComboBox>
+
+                        <Label id="lTypeAppointment" text="{i18n>typeAppointment}" required="true"/>
+                        <ComboBox id="cbTypeAppointment"
+                                items="{/VH_TypesAppointments}"
+                                selectedKey="{form>/typeAppointment_ID}">
+                            <items>
+                                <core:Item key="{ID}" text="{type}"></core:Item>
+                            </items>
+                        </ComboBox>
+
+                        <Label id="lTitle" text="{i18n>title}" required="true"/>
+                        <Input id="ipTitle" value="{form>/title}"/>
+
+                        <Label id="lDescription" text="{i18n>description}"/>
+                        <TextArea id="txaDescription" value="{form>/description}"/>
+
+                        <Label id="lBeginDate" text="{i18n>beginDate}" required="true"/>
+                        <DatePicker id="dpBeginDate"
+                                    value="{form>/beginDate}"
+                                    valueFormat="yyyy-MM-dd"
+                                    change="onChangeDate"/>
+
+                        <Label id="lEndDate" text="{i18n>endDate}" required="true"/>
+                        <DatePicker id="dpEndDate"
+                                    value="{form>/endDate}"
+                                    valueFormat="yyyy-MM-dd"
+                                    enabled="false"/>
+
+                        <Label id="lBlock" text="{i18n>block}" required="true"/>
+                        <ComboBox id="cbBlock"
+                                items="{/VH_Blocks}"
+                                selectedKey="{form>/block_ID}"
+                                showSecondaryValues="true"
+                                change="onChangeBlock">
+                            <core:ListItem key="{ID}" text="{block}" additionalText="{timeText}"/>
+                        </ComboBox>
+
+                        <Label id="lBeginTime" text="{i18n>beginTime}" required="true"/>
+                        <Input id="ipBeginTime" value="{form>/beginTime}" enabled="false"/>
+
+                        <Label id="lendTime" text="{i18n>endTime}" required="true"/>
+                        <Input id="ipendTime" value="{form>/endTime}" enabled="false"/>
+                    
+                    </form:content>
+                
+                </form:SimpleForm>
             
             </content>
 
@@ -16,7 +76,7 @@
                         text="{i18n>save}"
                         tooltip="{i18n>save}"
                         type="Emphasized"
-                        press="onCreatePress"
+                        press="onSavePress"
                         width="4rem"/>
             </beginButton>
 

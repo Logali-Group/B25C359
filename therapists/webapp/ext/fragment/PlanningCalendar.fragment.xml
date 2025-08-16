@@ -10,7 +10,10 @@
 								startHour="6"
 								endHour="18"
 								scaleFactor="0.5"
-								appointments="{toAppointments}">
+								appointments="{toAppointments}"
+								appointmentSelect=".extension.therapists.ext.controller.ObjectPage.onNavToAppointments"
+								enableAppointmentsDragAndDrop="{= ${IsActiveEntity} === true? false : true}"
+								appointmentDrop=".extension.therapists.ext.controller.ObjectPage.onAppointmentDrop">
 				
 				<actions>
 
@@ -35,7 +38,11 @@
 												title="{title}"
 												description="{description}"
 												startDate="{startDate}"
-												endDate="{endDate2}"/>
+												endDate="{endDate2}"
+												type="{
+													path: 'status_code',
+													formatter: 'handler.status'
+												}"/>
 				</appointments>
 		
 		</SinglePlanningCalendar>

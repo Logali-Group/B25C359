@@ -102,6 +102,11 @@
           "pattern": "TherapistsSet({key}):?query:",
           "name": "TherapistsSetObjectPage",
           "target": "TherapistsSetObjectPage"
+        },
+        {
+          "name": "TherapistsSet_toAppointmentsObjectPage",
+          "pattern": "TherapistsSet(ID={key},IsActiveEntity={boolean})/toAppointments(ID={toAppointmentsKey},IsActiveEntity={boolean2}):?query:",
+          "target": "TherapistsSet_toAppointmentsObjectPage"
         }
       ],
       "targets": {
@@ -151,7 +156,25 @@
                     }
                   }
                 }
+              },
+              "navigation": {
+                "toAppointments": {
+                  "detail": {
+                    "route": "TherapistsSet_toAppointmentsObjectPage"
+                  }
+                }
               }
+            }
+          }
+        },
+        "TherapistsSet_toAppointmentsObjectPage": {
+          "type": "Component",
+          "id": "TherapistsSet_toAppointmentsObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "navigation": {},
+              "contextPath": "/TherapistsSet/toAppointments"
             }
           }
         }
